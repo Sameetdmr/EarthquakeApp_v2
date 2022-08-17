@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../utils/navigation/CustomNavigator.dart';
 import '../ViewModelBase.dart';
+import '../home/HomePage.dart';
 
 class SplashPageViewModel extends ViewModelBase {
   SplashPageViewModel() {
@@ -16,6 +18,6 @@ class SplashPageViewModel extends ViewModelBase {
   }
 
   isStart() async {
-    //CustomNavigator().pushAndRemoveUntil(HomePage());
+    CustomNavigator().pushAndRemoveUntil(HomePage());
   }
 }

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (BuildContext context, Widget? child) {
         return GetMaterialApp(
-          title: 'Breaking News',
+          title: 'Earthquake App',
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
           home: SplashPage(),

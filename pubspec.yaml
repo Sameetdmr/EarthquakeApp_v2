@@ -39,6 +39,8 @@ dependencies:
   lottie: ^1.4.1
   another_flushbar: ^1.10.29
   flutter_screenutil: ^5.5.3+2
+  google_maps_flutter: ^2.1.12
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:

@@ -10,8 +10,6 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SplashPageViewModel splashPageViewModel = Get.put(SplashPageViewModel());
-    return Scaffold(
-      body: Center(child: Text('Hoşgeldiniz...')),
-    );
+    return Scaffold();
   }
 }

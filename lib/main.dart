@@ -28,11 +28,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return ScreenUtilInit(
       minTextAdapt: true,
       builder: (BuildContext context, Widget? child) {
         return GetMaterialApp(
-          title: 'Breaking News',
+          title: 'Earthquake App',
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
           home: SplashPage(),

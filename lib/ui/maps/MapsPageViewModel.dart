@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MapsPageViewModel extends ViewModelBase {
   late Set<Marker> marker = new Set();
@@ -23,9 +24,16 @@ class MapsPageViewModel extends ViewModelBase {
     getMarkers();
   }
 
+  void onShare(BuildContext context) async {
+    final box = context.findRenderObject() as RenderBox?;
+    final String text = _homePageViewModel.eartQuakePM.value.titleList![index] + ' bölgesinde  ${_homePageViewModel.eartQuakePM.value.magList![index]} şiddetinde deprem olmuştur.';
+
+    Share.share(text, subject: 'Deprem App', sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
+
   getMarkers() {
     marker.add(Marker(
-        markerId: MarkerId('Deneme'),
+        markerId: MarkerId(_homePageViewModel.eartQuakePM.value.titleList![index]),
         position: LatLng(_homePageViewModel.eartQuakePM.value.latList![index], _homePageViewModel.eartQuakePM.value.lngList![index]), //position of marker
         infoWindow: InfoWindow(
           title: _homePageViewModel.eartQuakePM.value.titleList![index],
@@ -71,7 +79,9 @@ class MapsPageViewModel extends ViewModelBase {
                             Icons.share,
                             color: Colors.purple,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            onShare(_context);
+                          },
                         ))
                       ],
                     ),

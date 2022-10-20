@@ -21,6 +21,7 @@ class HomePageViewModel extends ViewModelBase {
   }
 
   getDeprem() async {
+    isLoading.value = false;
     try {
       EarthquakeRequest earthquakeRequest = new EarthquakeRequest();
       earthquakeRequest.limit = 100;

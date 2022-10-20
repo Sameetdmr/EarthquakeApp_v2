@@ -9,7 +9,10 @@ GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.dark,
+    statusBarColor: Colors.transparent, // transparent status bar
+  ));
   //await Firebase.initializeApp();
 /*
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -27,8 +30,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
     return ScreenUtilInit(
       minTextAdapt: true,
       builder: (BuildContext context, Widget? child) {

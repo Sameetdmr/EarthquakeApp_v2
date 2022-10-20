@@ -1,6 +1,8 @@
+import 'package:depremapp/ui/components/CustomAppBar.dart';
 import 'package:depremapp/ui/home/HomePageViewModel.dart';
 import 'package:depremapp/ui/maps/MapsPage.dart';
 import 'package:depremapp/utils/navigation/CustomNavigator.dart';
+import 'package:depremapp/utils/theme/CustomTextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,14 +18,12 @@ class HomePage extends StatelessWidget {
     _homePageViewModel = Get.put(HomePageViewModel());
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          'Depremler',
-          style: TextStyle(color: Colors.black, fontSize: 24.sp),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: false,
+      appBar: CustomAppBar(
+        title: 'Depremler',
+        rightIcon: Icon(Icons.refresh),
+        onpressed: () {
+          _homePageViewModel.getDeprem();
+        },
       ),
       body: Obx(
         () => _homePageViewModel.isLoading.value
@@ -44,33 +44,36 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildCardWidget(int index) {
-    return GestureDetector(
-      onTap: () {
-        CustomNavigator().pushToMain(MapsPage(
-          index: index,
-        ));
-      },
-      child: Card(
-        color: Colors.white,
-        elevation: 3,
-        child: ListTile(
-          title: Text(
-            _homePageViewModel.eartQuakePM.value.titleList![index],
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 14.sp),
-          ),
-          subtitle: Text(
-            _homePageViewModel.eartQuakePM.value.dateList![index],
-            style: TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.w300, fontSize: 14.sp),
-          ),
-          leading: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(_homePageViewModel.eartQuakePM.value.magList![index].toString(), style: TextStyle(color: _homePageViewModel.eartQuakePM.value.colorList![index], fontSize: 24.sp, fontWeight: FontWeight.w800)),
-            ],
-          ),
-          trailing: Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.blueGrey,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 0.02.sh, vertical: 0.02.sw),
+      child: GestureDetector(
+        onTap: () {
+          CustomNavigator().pushToMain(MapsPage(
+            index: index,
+          ));
+        },
+        child: Card(
+          color: Colors.white,
+          elevation: 3,
+          child: ListTile(
+            title: Text(
+              _homePageViewModel.eartQuakePM.value.titleList![index],
+              style: CustomTextTheme.instance.cardTitleText,
+            ),
+            subtitle: Text(
+              _homePageViewModel.eartQuakePM.value.dateList![index],
+              style: CustomTextTheme.instance.boldSubtitleText.copyWith(color: Colors.grey.shade700),
+            ),
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(_homePageViewModel.eartQuakePM.value.magList![index].toString(), style: CustomTextTheme.instance.boldCardLeadingText.copyWith(color: _homePageViewModel.eartQuakePM.value.colorList![index])),
+              ],
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blueGrey,
+            ),
           ),
         ),
       ),

@@ -12,11 +12,10 @@ class CustomTextTheme {
 
   CustomTextTheme._init();
 
-  final TextStyle boldTopTitleText = TextStyle(
-    fontWeight: FontWeight.w600,
+  final TextStyle boldCardLeadingText = TextStyle(
+    fontWeight: FontWeight.w800,
     fontStyle: FontStyle.normal,
-    fontSize: 14.sp,
-    color: ColorSchemeLight.instance.blackColor,
+    fontSize: 24.sp,
   );
 
   final TextStyle boldSubtitleText = TextStyle(
@@ -27,7 +26,7 @@ class CustomTextTheme {
   );
 
   final TextStyle cardTitleText = TextStyle(
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.bold,
     fontStyle: FontStyle.normal,
     fontSize: 14.sp,
     color: ColorSchemeLight.instance.blackColor,
@@ -39,12 +38,5 @@ class CustomTextTheme {
     fontStyle: FontStyle.normal,
     fontSize: 8.sp,
     color: ColorSchemeLight.instance.blackColor,
-  );
-
-  final TextStyle boldSnackbarText = TextStyle(
-    fontWeight: FontWeight.w600,
-    fontStyle: FontStyle.normal,
-    fontSize: 14.sp,
-    color: Colors.white,
   );
 }

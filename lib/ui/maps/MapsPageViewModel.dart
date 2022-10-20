@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:depremapp/ui/ViewModelBase.dart';
 import 'package:depremapp/ui/home/HomePageViewModel.dart';
+import 'package:depremapp/utils/theme/CustomTextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,12 @@ class MapsPageViewModel extends ViewModelBase {
     getMarkers();
   }
 
+  @override
+  void onClose() {
+    _homePageViewModel.getDeprem();
+    super.onClose();
+  }
+
   void onShare(BuildContext context) async {
     final box = context.findRenderObject() as RenderBox?;
     final String text = _homePageViewModel.eartQuakePM.value.titleList![index] + ' bölgesinde  ${_homePageViewModel.eartQuakePM.value.magList![index]} şiddetinde deprem olmuştur.';
@@ -40,54 +47,50 @@ class MapsPageViewModel extends ViewModelBase {
         ),
         icon: BitmapDescriptor.defaultMarker,
         onTap: () {
-          showModalBottomSheet(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-              context: _context,
-              builder: (builder) {
-                return Container(
-                  height: MediaQuery.of(_context).size.height / 4,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              _homePageViewModel.eartQuakePM.value.magList![index].toString(),
-                              style: TextStyle(color: _homePageViewModel.eartQuakePM.value.colorList![index], fontSize: 28.sp),
-                            ),
-                            Text(
-                              _homePageViewModel.eartQuakePM.value.titleList![index],
-                              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              _homePageViewModel.eartQuakePM.value.dateList![index],
-                              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300),
-                            ),
-                            Text(
-                              _homePageViewModel.eartQuakePM.value.depthList![index].toString(),
-                              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w300),
-                            )
-                          ],
-                        ),
-                        Center(
-                            child: IconButton(
-                          icon: Icon(
-                            Icons.share,
-                            color: Colors.purple,
-                          ),
-                          onPressed: () {
-                            onShare(_context);
-                          },
-                        ))
-                      ],
-                    ),
-                  ),
-                );
-              });
+          _buildModalBottomSheet();
         }));
+  }
+
+  Future<dynamic> _buildModalBottomSheet() {
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+        context: _context,
+        builder: (builder) {
+          return Container(
+            height: MediaQuery.of(_context).size.height / 4,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(_homePageViewModel.eartQuakePM.value.magList![index].toString(), style: CustomTextTheme.instance.boldCardLeadingText.copyWith(color: _homePageViewModel.eartQuakePM.value.colorList![index])),
+                      Text(_homePageViewModel.eartQuakePM.value.titleList![index],
+                          style: CustomTextTheme.instance.cardTitleText.copyWith(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text(_homePageViewModel.eartQuakePM.value.dateList![index], style: CustomTextTheme.instance.cardTitleText.copyWith(fontWeight: FontWeight.w300)),
+                      Text(_homePageViewModel.eartQuakePM.value.depthList![index].toString(), style: CustomTextTheme.instance.cardTitleText.copyWith(fontWeight: FontWeight.w300))
+                    ],
+                  ),
+                  Center(
+                      child: IconButton(
+                    icon: Icon(
+                      Icons.share,
+                      color: Colors.purple,
+                    ),
+                    onPressed: () {
+                      onShare(_context);
+                    },
+                  ))
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

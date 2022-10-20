@@ -1,8 +1,8 @@
+import 'package:depremapp/ui/components/CustomAppBar.dart';
 import 'package:depremapp/ui/home/HomePageViewModel.dart';
 import 'package:depremapp/ui/maps/MapsPageViewModel.dart';
 import 'package:depremapp/utils/navigation/CustomNavigator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -17,12 +17,8 @@ class MapsPage extends StatelessWidget {
     _mapsPageViewModel = Get.put(MapsPageViewModel(index, context));
     _homePageViewModel = Get.find();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          _homePageViewModel.eartQuakePM.value.titleList![index],
-          style: TextStyle(color: Colors.black, fontSize: 18.sp),
-        ),
-        backgroundColor: Colors.white,
+      appBar: CustomAppBar(
+        title: _homePageViewModel.eartQuakePM.value.titleList![index],
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -32,13 +28,16 @@ class MapsPage extends StatelessWidget {
             CustomNavigator().popFromMain();
           },
         ),
-        elevation: 0,
-        centerTitle: false,
+        onpressed: () {
+          _mapsPageViewModel.onShare(context);
+        },
+        rightIcon: Icon(Icons.share),
       ),
       body: Stack(
         children: [
           GoogleMap(
             mapType: MapType.normal,
+            mapToolbarEnabled: false,
             markers: _mapsPageViewModel.marker,
             initialCameraPosition: CameraPosition(target: LatLng(_homePageViewModel.eartQuakePM.value.latList![index], _homePageViewModel.eartQuakePM.value.lngList![index]), zoom: 12),
             onMapCreated: (GoogleMapController controller) {

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import '../../utils/navigation/CustomNavigator.dart';
 import '../ViewModelBase.dart';
 import '../home/HomePage.dart';
@@ -6,6 +5,7 @@ import '../home/HomePage.dart';
 class SplashPageViewModel extends ViewModelBase {
   SplashPageViewModel() {
     initPage();
+    setCurrentScreen("Splash Page");
   }
 
   initPage() async {
@@ -13,7 +13,7 @@ class SplashPageViewModel extends ViewModelBase {
       await Future.delayed(const Duration(seconds: 2));
       await isStart();
     } catch (ex) {
-      debugPrint(ex.toString());
+      exceptionHandlingService.handleException(ex);
     }
   }
 

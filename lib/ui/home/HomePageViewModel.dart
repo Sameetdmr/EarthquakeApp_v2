@@ -15,12 +15,17 @@ class HomePageViewModel extends ViewModelBase {
   IEarthquakeRestService _iEarthquakeRestService = ServiceLocator().get<IEarthquakeRestService>();
   HomePageViewModel() {
     initPage();
+    setCurrentScreen("Home Page");
   }
   initPage() {
-    getDeprem();
+    try {
+      getDeprem();
+    } catch (e) {
+      exceptionHandlingService.handleException(e);
+    }
   }
 
-  getDeprem() async {
+  Future getDeprem() async {
     isLoading.value = false;
     try {
       EarthquakeRequest earthquakeRequest = new EarthquakeRequest();
@@ -34,35 +39,39 @@ class HomePageViewModel extends ViewModelBase {
         //Hata mesajı
       }
     } catch (e) {
-      debugPrint(e.toString());
+      throw e;
     }
   }
 
   fillDepremPM(List<Result>? result) {
-    if (result != null) {
-      for (var i = 0; i < result.length; i++) {
-        eartQuakePM.value.titleList!.add(result[i].title!);
-        eartQuakePM.value.dateList!.add(result[i].date!);
-        eartQuakePM.value.magList!.add(result[i].mag!);
-        eartQuakePM.value.depthList!.add(result[i].depth!);
-        eartQuakePM.value.latList!.add(result[i].lat!);
-        eartQuakePM.value.lngList!.add(result[i].lng!);
-      }
-      for (var i = 0; i < eartQuakePM.value.magList!.length; i++) {
-        if (eartQuakePM.value.magList![i] <= 3) {
-          eartQuakePM.value.colorList!.add(Colors.grey.shade400);
-        } else if (eartQuakePM.value.magList![i] <= 4) {
-          eartQuakePM.value.colorList!.add(Colors.purple);
-        } else if (eartQuakePM.value.magList![i] <= 7) {
-          eartQuakePM.value.colorList!.add(Colors.green);
-        } else if (eartQuakePM.value.magList![i] <= 8) {
-          eartQuakePM.value.colorList!.add(Colors.orange);
-        } else {
-          eartQuakePM.value.colorList!.add(Colors.red);
+    try {
+      if (result != null) {
+        for (var i = 0; i < result.length; i++) {
+          eartQuakePM.value.titleList!.add(result[i].title!);
+          eartQuakePM.value.dateList!.add(result[i].date!);
+          eartQuakePM.value.magList!.add(result[i].mag!);
+          eartQuakePM.value.depthList!.add(result[i].depth!);
+          eartQuakePM.value.latList!.add(result[i].lat!);
+          eartQuakePM.value.lngList!.add(result[i].lng!);
         }
-      }
+        for (var i = 0; i < eartQuakePM.value.magList!.length; i++) {
+          if (eartQuakePM.value.magList![i] <= 3) {
+            eartQuakePM.value.colorList!.add(Colors.grey.shade400);
+          } else if (eartQuakePM.value.magList![i] <= 4) {
+            eartQuakePM.value.colorList!.add(Colors.purple);
+          } else if (eartQuakePM.value.magList![i] <= 7) {
+            eartQuakePM.value.colorList!.add(Colors.green);
+          } else if (eartQuakePM.value.magList![i] <= 8) {
+            eartQuakePM.value.colorList!.add(Colors.orange);
+          } else {
+            eartQuakePM.value.colorList!.add(Colors.red);
+          }
+        }
 
-      isLoading.value = true;
+        isLoading.value = true;
+      }
+    } catch (e) {
+      throw e;
     }
   }
 }

@@ -20,9 +20,14 @@ class MapsPageViewModel extends ViewModelBase {
     this._context = context;
 
     initPage();
+    setCurrentScreen("Maps Page");
   }
   initPage() {
-    getMarkers();
+    try {
+      getMarkers();
+    } catch (e) {
+      exceptionHandlingService.handleException(e);
+    }
   }
 
   @override
@@ -31,7 +36,7 @@ class MapsPageViewModel extends ViewModelBase {
     super.onClose();
   }
 
-  void onShare(BuildContext context) async {
+  Future onShare(BuildContext context) async {
     final box = context.findRenderObject() as RenderBox?;
     final String text = _homePageViewModel.eartQuakePM.value.titleList![index] + ' bölgesinde  ${_homePageViewModel.eartQuakePM.value.magList![index]} şiddetinde deprem olmuştur.';
 
@@ -39,16 +44,20 @@ class MapsPageViewModel extends ViewModelBase {
   }
 
   getMarkers() {
-    marker.add(Marker(
-        markerId: MarkerId(_homePageViewModel.eartQuakePM.value.titleList![index]),
-        position: LatLng(_homePageViewModel.eartQuakePM.value.latList![index], _homePageViewModel.eartQuakePM.value.lngList![index]), //position of marker
-        infoWindow: InfoWindow(
-          title: _homePageViewModel.eartQuakePM.value.titleList![index],
-        ),
-        icon: BitmapDescriptor.defaultMarker,
-        onTap: () {
-          _buildModalBottomSheet();
-        }));
+    try {
+      marker.add(Marker(
+          markerId: MarkerId(_homePageViewModel.eartQuakePM.value.titleList![index]),
+          position: LatLng(_homePageViewModel.eartQuakePM.value.latList![index], _homePageViewModel.eartQuakePM.value.lngList![index]), //position of marker
+          infoWindow: InfoWindow(
+            title: _homePageViewModel.eartQuakePM.value.titleList![index],
+          ),
+          icon: BitmapDescriptor.defaultMarker,
+          onTap: () {
+            _buildModalBottomSheet();
+          }));
+    } catch (e) {
+      throw e;
+    }
   }
 
   Future<dynamic> _buildModalBottomSheet() {

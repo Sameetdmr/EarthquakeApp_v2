@@ -16,3 +16,14 @@ It is a flutter application, Provides access to last minute earthquakes in Turke
 
 
 ## Previews
+
+
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/43873156/205680886-754efc0b-3487-4083-bca7-2cc652ae5dab.png" width="200" />
+  <img src="https://user-images.githubusercontent.com/43873156/205680982-d07a1469-82a9-4552-9d08-32d83a7ae699.png" width="200" /> 
+  <img src="https://user-images.githubusercontent.com/43873156/205681045-ed4fc325-1a98-428c-bb2e-5249135dab9b.png" width="200" />
+<img src="https://user-images.githubusercontent.com/43873156/205681143-789bed9f-694f-4535-9e2f-fca5c8093a17.png" width="200" />
+</p>
+
+
+

@@ -1,16 +1,18 @@
-# depremapp
+# EarthquakeApp
 
-A new Flutter project.
+It is a flutter application, Provides access to last minute earthquakes in Turkey!
 
-## Getting Started
+## Tech and Libraries
 
-This project is a starting point for a Flutter application.
+- MVVM Architecture
+- State Management with [GetX](https://pub.dev/packages/get)
+- Animation [Lottie](https://pub.dev/packages/lottie)
+- Analytics & Crashlytics [Firebase](https://firebase.flutter.dev/)
+- To view the map [Google Maps](https://pub.dev/packages/google_maps_flutter)
 
-A few resources to get you started if this is your first Flutter project:
+## News API
+- [Earthquake API](https://api.orhanaydogdu.com.tr/deprem/live.php?limit=100) 
+- I would like to thank [Orhan Aydoğdu](https://www.linkedin.com/in/orhanayd/) for providing the service.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Previews

@@ -12,7 +12,7 @@ It is a flutter application, Provides access to last minute earthquakes in Turke
 
 ## News API
 - [Earthquake API](https://api.orhanaydogdu.com.tr/deprem/live.php?limit=100) 
-- I would like to thank [Orhan Aydoğdu](https://www.linkedin.com/in/orhanayd/) for providing the service.
+- I would like to thank [Orhan Aydoğdu](https://github.com/orhanayd) for providing the service.
 
 
 ## Previews

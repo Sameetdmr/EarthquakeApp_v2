@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../utils/constants/App_Constants.dart';
 import '../../utils/theme/colors/ColorSchemeLight.dart';
 import '../components/CustomLottie.dart';
 
@@ -39,10 +40,7 @@ class HomePage extends StatelessWidget {
                   return _buildCardWidget(index);
                 },
               )
-            : Center(
-                child: CustomLottie(
-                lottieUrl: 'assets/lottie/earthquake_animation.json',
-              )),
+            : Center(child: CustomLottie(lottieUrl: App_Constants.LOTTIE_PATH_SPLASH_LOADING)),
       ),
     );
   }

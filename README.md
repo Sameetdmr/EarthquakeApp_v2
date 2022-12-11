@@ -2,6 +2,29 @@
 
 It is a flutter application, Provides access to last minute earthquakes in Turkey!
 
+
+## Getting Started
+
+- Get an API key at https://cloud.google.com/maps-platform/.
+
+- Enable Google Map SDK for each platform.
+
+- Go to Google Developers Console.
+- Choose the project that you want to enable Google Maps on.
+- Select the navigation menu and then select "Google Maps".
+- Select "APIs" under the Google Maps menu.
+- To enable Google Maps for Android, select "Maps SDK for Android" in the "Additional APIs" section, then select "ENABLE".
+- Make sure the APIs you enabled are under the "Enabled APIs" section.
+
+
+- Specify your API key in the application manifest android/app/src/main/AndroidManifest.xml:
+```
+<manifest ...
+  <application ...
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="Api-key"/>
+```
+
 ## Tech and Libraries
 
 - MVVM Architecture

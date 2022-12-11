@@ -15,6 +15,7 @@ void main() async {
     statusBarIconBrightness: Brightness.dark,
     statusBarColor: Colors.transparent, // transparent status bar
   ));
+  /*
   await Firebase.initializeApp();
 
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -22,7 +23,7 @@ void main() async {
     FirebaseCrashlytics.instance.crash(); // fatal
   };
   
-
+*/
   ServiceLocator().init();
   runApp(MyApp());
 }

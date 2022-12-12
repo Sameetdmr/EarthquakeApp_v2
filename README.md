@@ -25,6 +25,13 @@ It is a flutter application, Provides access to last minute earthquakes in Turke
                android:value="Api-key"/>
 ```
 
+```
+flutter pub-get
+flutter run
+```
+
+
+
 ## Tech and Libraries
 
 - MVVM Architecture

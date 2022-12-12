@@ -1,39 +1,39 @@
 {
-      "project_info": {
-        "project_number": "615556274015",
-        "project_id": "depremapp-6616e",
-        "storage_bucket": "depremapp-6616e.appspot.com"
+  "project_info": {
+    "project_number": "615556274015",
+    "project_id": "depremapp-6616e",
+    "storage_bucket": "depremapp-6616e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615556274015:android:6d7a38573fa2d9092088ea",
+        "android_client_info": {
+          "package_name": "com.example.depremapp"
+        }
       },
-      "client": [
+      "oauth_client": [
         {
-          "client_info": {
-            "mobilesdk_app_id": "1:615556274015:android:6d7a38573fa2d9092088ea",
-            "android_client_info": {
-              "package_name": "com.example.depremapp"
-            }
-          },
-          "oauth_client": [
+          "client_id": "615556274015-ju5s5kbp789f5n6ukuafv4sp4gjiv16o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp2CCZvKNCJZY-2WXG8CUbZHwU2s5Z0Lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
               "client_id": "615556274015-ju5s5kbp789f5n6ukuafv4sp4gjiv16o.apps.googleusercontent.com",
               "client_type": 3
             }
-          ],
-          "api_key": [
-            {
-              "current_key": "AIzaSyBp2CCZvKNCJZY-2WXG8CUbZHwU2s5Z0Lw"
-            }
-          ],
-          "services": {
-            "appinvite_service": {
-              "other_platform_oauth_client": [
-                {
-                  "client_id": "615556274015-ju5s5kbp789f5n6ukuafv4sp4gjiv16o.apps.googleusercontent.com",
-                  "client_type": 3
-                }
-              ]
-            }
-          }
+          ]
         }
-      ],
-      "configuration_version": "1"
+      }
     }
+  ],
+  "configuration_version": "1"
+}

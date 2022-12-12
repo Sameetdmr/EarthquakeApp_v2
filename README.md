@@ -26,7 +26,7 @@ It is a flutter application, Provides access to last minute earthquakes in Turke
 ```
 
 ```
-flutter pub-get
+flutter pub get
 flutter run
 ```
 

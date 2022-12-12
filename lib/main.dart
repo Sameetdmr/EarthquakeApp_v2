@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'ui/splash/SplashPage.dart';
 import 'utils/servicelocator/ServiceLocator.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey();
 
@@ -22,8 +20,8 @@ void main() async {
     FirebaseCrashlytics.instance.log(details.toString());
     FirebaseCrashlytics.instance.crash(); // fatal
   };
-  
-*/
+  */
+
   ServiceLocator().init();
   runApp(MyApp());
 }

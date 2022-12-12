@@ -5,7 +5,7 @@ import '../home/HomePage.dart';
 class SplashPageViewModel extends ViewModelBase {
   SplashPageViewModel() {
     initPage();
-    setCurrentScreen("Splash Page");
+    //setCurrentScreen("Splash Page");
   }
 
   initPage() async {

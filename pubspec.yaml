@@ -19,6 +19,7 @@ dependencies:
   firebase_core: ^1.20.1
   firebase_crashlytics: ^2.8.7
   firebase_analytics: ^9.1.9
+  firebase_core_platform_interface: 4.5.1
 
   #Map
   google_maps_flutter: ^2.1.12

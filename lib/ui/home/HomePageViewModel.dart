@@ -51,8 +51,8 @@ class HomePageViewModel extends ViewModelBase {
           eartQuakePM.value.dateList!.add(result[i].date!);
           eartQuakePM.value.magList!.add(result[i].mag!);
           eartQuakePM.value.depthList!.add(result[i].depth!);
-          eartQuakePM.value.latList!.add(result[i].lat!);
-          eartQuakePM.value.lngList!.add(result[i].lng!);
+          eartQuakePM.value.latList!.add(result[i].geojson!.coordinates![0]);
+          eartQuakePM.value.lngList!.add(result[i].geojson!.coordinates![1]);
         }
         for (var i = 0; i < eartQuakePM.value.magList!.length; i++) {
           if (eartQuakePM.value.magList![i] <= 3) {

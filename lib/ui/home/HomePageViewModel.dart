@@ -15,7 +15,7 @@ class HomePageViewModel extends ViewModelBase {
   IEarthquakeRestService _iEarthquakeRestService = ServiceLocator().get<IEarthquakeRestService>();
   HomePageViewModel() {
     initPage();
-    setCurrentScreen("Home Page");
+    //setCurrentScreen("Home Page");
   }
   initPage() {
     try {

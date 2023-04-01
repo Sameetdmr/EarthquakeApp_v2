@@ -20,7 +20,7 @@ class MapsPageViewModel extends ViewModelBase {
     this._context = context;
 
     initPage();
-    setCurrentScreen("Maps Page");
+    //setCurrentScreen("Maps Page");
   }
   initPage() {
     try {

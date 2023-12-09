@@ -13,8 +13,10 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SplashPageViewModel splashPageViewModel = Get.put(SplashPageViewModel());
-    return Scaffold(
-      body: Center(child: CustomLottie(lottieUrl: App_Constants.LOTTIE_PATH_SPLASH_LOADING)),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(child: CustomLottie(lottieUrl: App_Constants.LOTTIE_PATH_SPLASH_LOADING)),
+      ),
     );
   }
 }

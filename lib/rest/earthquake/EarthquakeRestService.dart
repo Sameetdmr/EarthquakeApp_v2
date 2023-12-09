@@ -5,7 +5,7 @@ import '../RequestType.dart';
 import '../RestServiceManager.dart';
 
 abstract class IEarthquakeRestService {
-  Future<EarthquakeResponse?> getEarthquake(EarthquakeRequest earthquakeRequest);
+  Future<EarthquakeResponse> getEarthquake(EarthquakeRequest earthquakeRequest);
 }
 
 class EarthquakeRestService implements IEarthquakeRestService {

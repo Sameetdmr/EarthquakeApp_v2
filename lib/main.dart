@@ -11,11 +11,6 @@ GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarIconBrightness: Brightness.dark,
-    statusBarColor: Colors.transparent, // transparent status bar
-  ));
-
   await Firebase.initializeApp();
 
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -34,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       minTextAdapt: true,
-      builder: (BuildContext context, Widget? child) {
+      builder: (__, _) {
         return GetMaterialApp(
           title: 'Earthquake App',
           debugShowCheckedModeBanner: false,

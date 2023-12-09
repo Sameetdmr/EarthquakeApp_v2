@@ -1,8 +1,5 @@
 class EarthquakeRequest {
-  int? limit;
-  EarthquakeRequest({this.limit});
+  EarthquakeRequest();
 
-  Map<String, dynamic> toJson() => {
-        "limit": limit,
-      };
+  Map<String, dynamic> toJson() => {};
 }

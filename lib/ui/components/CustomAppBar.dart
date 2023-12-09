@@ -12,12 +12,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         title,
-        style: TextStyle(color: Colors.black, fontSize: 14.sp),
+        maxLines: 2,
+        style: TextStyle(color: Colors.black, fontSize: 18.sp),
       ),
-      elevation: 5,
+      elevation: 2,
       leading: leading,
       actions: [
-        rightIcon != null ? IconButton(icon: rightIcon!, color: Colors.purple, onPressed: onpressed) : SizedBox(),
+        rightIcon != null
+            ? IconButton(
+                icon: rightIcon!,
+                color: Colors.black,
+                onPressed: onpressed,
+              )
+            : SizedBox(),
       ],
       backgroundColor: Colors.white,
       centerTitle: false,

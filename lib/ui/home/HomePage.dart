@@ -1,17 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: must_be_immutable
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:depremapp/models/presentation/EarthquakePM.dart';
 import 'package:depremapp/ui/components/CustomAppBar.dart';
 import 'package:depremapp/ui/home/HomePageViewModel.dart';
-import 'package:depremapp/ui/maps/MapsPage.dart';
-import 'package:depremapp/utils/navigation/CustomNavigator.dart';
-import 'package:depremapp/utils/theme/CustomTextTheme.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-import '../../utils/constants/App_Constants.dart';
-import '../../utils/theme/colors/ColorSchemeLight.dart';
-import '../components/CustomLottie.dart';
+import 'package:depremapp/ui/home/components/EarthquakeCard.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -20,69 +15,60 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _homePageViewModel = Get.put(HomePageViewModel());
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: CustomAppBar(
-        title: 'Depremler',
-        rightIcon: Icon(Icons.refresh),
-        onpressed: () {
-          _homePageViewModel.getDeprem();
-        },
-      ),
-      body: Obx(
-        () => _homePageViewModel.isLoading.value
-            ? ListView.separated(
-                itemCount: _homePageViewModel.eartQuakePM.value.titleList!.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return Divider(
-                    color: ColorSchemeLight.instance.dusk40Color,
-                  );
-                },
-                itemBuilder: (context, index) {
-                  return _buildCardWidget(index);
-                },
-              )
-            : Center(child: CustomLottie(lottieUrl: App_Constants.LOTTIE_PATH_SPLASH_LOADING)),
-      ),
-    );
-  }
-
-  Widget _buildCardWidget(int index) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 0.02.sh, vertical: 0.02.sw),
-      child: GestureDetector(
-        onTap: () {
-          CustomNavigator().pushToMain(MapsPage(
-            title: _homePageViewModel.eartQuakePM.value.titleList![index],
-            latitude: _homePageViewModel.eartQuakePM.value.latList![index],
-            longitude: _homePageViewModel.eartQuakePM.value.lngList![index],
-          ));
-        },
-        child: Card(
-          color: Colors.white,
-          elevation: 3,
-          child: ListTile(
-            title: Text(
-              _homePageViewModel.eartQuakePM.value.titleList![index],
-              style: CustomTextTheme.instance.cardTitleText,
-            ),
-            subtitle: Text(
-              _homePageViewModel.eartQuakePM.value.dateList![index],
-              style: CustomTextTheme.instance.boldSubtitleText.copyWith(color: Colors.grey.shade700),
-            ),
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(_homePageViewModel.eartQuakePM.value.magList![index].toString(), style: CustomTextTheme.instance.boldCardLeadingText.copyWith(color: _homePageViewModel.eartQuakePM.value.colorList![index])),
-              ],
-            ),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.blueGrey,
-            ),
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: CustomAppBar(
+          title: 'Depremler',
+          rightIcon: Icon(Icons.refresh),
+          onpressed: () {
+            _homePageViewModel.getEarthQuake_ByView();
+          },
+        ),
+        body: Obx(
+          () => _homePageViewModel.isLoading.value
+              ? _BuildEarthQuakeList(
+                  earthQuakePM: _homePageViewModel.earthQuakePM,
+                )
+              : Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
         ),
       ),
     );
+  }
+}
+
+class _BuildEarthQuakeList extends StatelessWidget {
+  final Rx<EarthquakePM> earthQuakePM;
+  const _BuildEarthQuakeList({
+    Key? key,
+    required this.earthQuakePM,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return earthQuakePM.value.titleList!.isNotEmpty
+        ? ListView.separated(
+            itemCount: earthQuakePM.value.titleList!.length,
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 8,
+              );
+            },
+            itemBuilder: (context, index) {
+              return EarthquakeCard(
+                title: earthQuakePM.value.titleList![index],
+                date: earthQuakePM.value.dateList![index],
+                latitude: earthQuakePM.value.latList![index],
+                longitude: earthQuakePM.value.lngList![index],
+                mag: earthQuakePM.value.magList![index],
+                magColor: earthQuakePM.value.colorList![index],
+              );
+            },
+          )
+        : Center(
+            child: Text('Deprem Bulunmamaktadır.'),
+          );
   }
 }

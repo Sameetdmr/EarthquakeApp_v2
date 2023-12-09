@@ -1,6 +1,6 @@
-import 'package:depremapp/interfaces/rest/earthquake/IEarthquakeRestService.dart';
 import 'package:depremapp/models/presentation/EarthquakePM.dart';
 import 'package:depremapp/models/rest/request/earthquake/EarthquakeRequest.dart';
+import 'package:depremapp/rest/earthquake/EarthquakeRestService.dart';
 import 'package:depremapp/ui/ViewModelBase.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,15 +17,15 @@ class HomePageViewModel extends ViewModelBase {
     initPage();
     //setCurrentScreen("Home Page");
   }
-  initPage() {
+  void initPage() async {
     try {
-      getDeprem();
+      await getDeprem();
     } catch (e) {
       exceptionHandlingService.handleException(e);
     }
   }
 
-  Future getDeprem() async {
+  Future<void> getDeprem() async {
     isLoading.value = false;
     try {
       EarthquakeRequest earthquakeRequest = new EarthquakeRequest();
@@ -43,7 +43,7 @@ class HomePageViewModel extends ViewModelBase {
     }
   }
 
-  fillDepremPM(List<Result>? result) {
+  void fillDepremPM(List<Result>? result) {
     try {
       if (result != null) {
         for (var i = 0; i < result.length; i++) {

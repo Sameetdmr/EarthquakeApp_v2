@@ -1,6 +1,6 @@
+import 'package:depremapp/services/common/ExceptionHandlingService.dart';
 import 'package:get/get.dart';
 
-import '../interfaces/common/IExceptionHandlingService.dart';
 import '../utils/servicelocator/ServiceLocator.dart';
 
 class ViewModelBase extends GetxController {

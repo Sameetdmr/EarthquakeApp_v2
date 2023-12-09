@@ -2,17 +2,32 @@ class Geojson {
   String? type;
   List<double>? coordinates;
 
-  Geojson({this.type, this.coordinates});
+  Geojson({
+    this.type,
+    this.coordinates,
+  });
 
-  Geojson.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    coordinates = json['coordinates'].cast<double>();
+  Geojson copyWith({
+    String? type,
+    List<double>? coordinates,
+  }) {
+    return Geojson(
+      type: type ?? this.type,
+      coordinates: coordinates ?? this.coordinates,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['coordinates'] = this.coordinates;
-    return data;
+    return {
+      'type': type,
+      'coordinates': coordinates,
+    };
+  }
+
+  factory Geojson.fromJson(Map<String, dynamic> json) {
+    return Geojson(
+      type: json['type'] as String?,
+      coordinates: (json['coordinates'] as List<dynamic>?)?.map((e) => e as double).toList(),
+    );
   }
 }

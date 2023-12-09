@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:depremapp/ui/components/CustomAppBar.dart';
 import 'package:depremapp/ui/home/HomePageViewModel.dart';
 import 'package:depremapp/ui/maps/MapsPage.dart';
@@ -51,7 +53,9 @@ class HomePage extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           CustomNavigator().pushToMain(MapsPage(
-            index: index,
+            title: _homePageViewModel.eartQuakePM.value.titleList![index],
+            latitude: _homePageViewModel.eartQuakePM.value.latList![index],
+            longitude: _homePageViewModel.eartQuakePM.value.lngList![index],
           ));
         },
         child: Card(

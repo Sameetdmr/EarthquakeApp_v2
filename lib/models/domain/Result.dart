@@ -16,11 +16,11 @@ class Result {
     this.date,
   });
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-        mag: json["mag"] == null ? null : json["mag"].toDouble(),
-        lokasyon: json["lokasyon"] == null ? null : json["lokasyon"],
-        geojson: json["geojson"] != null ? Geojson.fromJson(json["geojson"]) : null,
-        depth: json["depth"] == null ? null : json["depth"].toDouble(),
-        title: json["title"] == null ? null : json["title"],
-        date: json["date"] == null ? null : json["date"],
+        mag: json["mag"] == null ? null : json["mag"].toDouble() as double?,
+        lokasyon: json["lokasyon"] == null ? null : json["lokasyon"] as String?,
+        geojson: json["geojson"] != null ? Geojson.fromJson(json["geojson"] as Map<String, dynamic>) : null,
+        depth: json["depth"] == null ? null : json["depth"].toDouble() as double?,
+        title: json["title"] == null ? null : json["title"] as String?,
+        date: json["date"] == null ? null : json["date"] as String?,
       );
 }

@@ -8,16 +8,16 @@ class SplashPageViewModel extends ViewModelBase {
     //setCurrentScreen("Splash Page");
   }
 
-  initPage() async {
+  void initPage() async {
     try {
-      await Future.delayed(const Duration(seconds: 2));
-      await isStart();
+      await Future<void>.delayed(const Duration(seconds: 2));
+      isStart();
     } catch (ex) {
       exceptionHandlingService.handleException(ex);
     }
   }
 
-  isStart() async {
+  void isStart() {
     CustomNavigator().pushAndRemoveUntil(HomePage());
   }
 }

@@ -1,8 +1,10 @@
-import '../../interfaces/common/IExceptionHandlingService.dart';
+class IExceptionHandlingService {
+  void handleException(dynamic exception) {}
+}
 
 class ExceptionHandlingService implements IExceptionHandlingService {
   @override
-  handleException(dynamic exception) {
+  void handleException(dynamic exception) {
     /*
     FirebaseCrashlytics.instance.recordFlutterError(FlutterErrorDetails(
       exception: exception,

@@ -11,21 +11,21 @@ class CustomNavigator {
 
   void pushToMain(Widget widget) {
     Get.addKey(mainNavigatorKey);
-    Get.to(widget);
+    Get.to<void>(widget);
   }
 
   void popFromMain() {
     Get.addKey(mainNavigatorKey);
-    Get.back();
+    Get.back<void>();
   }
 
   void pushReplacementFromMain(Widget widget) {
     Get.addKey(mainNavigatorKey);
-    Get.off(widget);
+    Get.off<void>(widget);
   }
 
   void pushAndRemoveUntil(Widget widget) {
     Get.addKey(mainNavigatorKey);
-    Get.offAll(widget);
+    Get.offAll<void>(widget);
   }
 }

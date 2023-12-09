@@ -1,8 +1,5 @@
-import 'package:depremapp/interfaces/rest/earthquake/IEarthquakeRestService.dart';
 import 'package:depremapp/rest/earthquake/EarthquakeRestService.dart';
 import 'package:get/get.dart';
-
-import '../../interfaces/common/IExceptionHandlingService.dart';
 import '../../services/common/ExceptionHandlingService.dart';
 
 class ServiceLocator {
@@ -14,11 +11,11 @@ class ServiceLocator {
     return _singleton;
   }
 
-  get<T>() {
+  T get<T>() {
     return Get.find<T>();
   }
 
-  init() {
+  void init() {
     Get.lazyPut<IExceptionHandlingService>(() => ExceptionHandlingService(), fenix: true);
     Get.lazyPut<IEarthquakeRestService>(() => EarthquakeRestService(), fenix: true);
   }

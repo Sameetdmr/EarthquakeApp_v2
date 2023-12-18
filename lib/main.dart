@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'ui/splash/SplashPage.dart';
@@ -10,13 +11,14 @@ GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
   await Firebase.initializeApp();
-
+/*
   FlutterError.onError = (FlutterErrorDetails details) {
     FirebaseCrashlytics.instance.log(details.toString());
     FirebaseCrashlytics.instance.crash(); // fatal
   };
-
+*/
   ServiceLocator().init();
   runApp(MyApp());
 }

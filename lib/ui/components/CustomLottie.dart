@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 class CustomLottie extends StatelessWidget {
@@ -6,9 +7,6 @@ class CustomLottie extends StatelessWidget {
   final String lottieUrl;
   @override
   Widget build(BuildContext context) {
-    return Lottie.asset(
-      lottieUrl,
-      repeat: false,
-    );
+    return Lottie.asset(lottieUrl, repeat: false, width: 100.w, height: 100.h);
   }
 }

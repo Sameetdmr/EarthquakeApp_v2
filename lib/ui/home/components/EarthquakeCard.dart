@@ -1,60 +1,65 @@
 import 'package:depremapp/ui/maps/MapsPage.dart';
 import 'package:depremapp/utils/navigation/CustomNavigator.dart';
-import 'package:depremapp/utils/theme/CustomTextTheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kartal/kartal.dart';
 
 class EarthquakeCard extends StatelessWidget {
   final String title;
-  final String date;
+  final String dateTime;
   final double latitude;
   final double longitude;
-  final double mag;
+  final String mag;
   final Color magColor;
+  final String depth;
   const EarthquakeCard({
     Key? key,
     required this.title,
-    required this.date,
+    required this.dateTime,
     required this.latitude,
     required this.longitude,
     required this.mag,
     required this.magColor,
+    required this.depth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 0.02.sh, vertical: 0.02.sw),
-      child: GestureDetector(
-        onTap: () {
-          CustomNavigator().pushToMain(MapsPage(
-            title: title,
-            latitude: latitude,
-            longitude: longitude,
-          ));
-        },
-        child: Card(
-          color: Colors.white,
-          elevation: 4,
-          child: ListTile(
-            title: Text(
-              title,
-              style: CustomTextTheme.instance.cardTitleText,
-            ),
-            subtitle: Text(
-              date,
-              style: CustomTextTheme.instance.boldSubtitleText.copyWith(color: Colors.grey.shade700),
-            ),
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(mag.toString(), style: CustomTextTheme.instance.boldCardLeadingText.copyWith(color: magColor)),
-              ],
-            ),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.blueGrey,
-            ),
+    return GestureDetector(
+      onTap: () {
+        CustomNavigator().pushToMain(MapsPage(
+          title: title,
+          latitude: latitude,
+          longitude: longitude,
+          dateTime: dateTime,
+          depth: depth,
+          magColor: magColor,
+          mag: mag,
+        ));
+      },
+      child: Card(
+        child: ListTile(
+          title: Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.visible,
+            style: context.general.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            dateTime,
+            style: context.general.textTheme.bodySmall,
+          ),
+          leading: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                mag,
+                style: context.general.textTheme.titleLarge?.copyWith(color: magColor),
+              ),
+            ],
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.grey.shade300,
           ),
         ),
       ),

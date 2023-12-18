@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class EarthquakePM {
   List<String>? titleList;
-  List<String>? dateList;
+  List<String>? dateTimeList;
   List<double>? magList;
   List<double>? depthList;
   List<double>? lngList;
@@ -11,7 +11,7 @@ class EarthquakePM {
 
   EarthquakePM() {
     titleList = <String>[];
-    dateList = <String>[];
+    dateTimeList = <String>[];
     magList = <double>[];
     depthList = <double>[];
     lngList = <double>[];

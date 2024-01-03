@@ -1,25 +1,13 @@
+import 'package:depremapp/utils/initialize/ProjectInitialize.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'ui/splash/SplashPage.dart';
-import 'utils/servicelocator/ServiceLocator.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey();
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
-  await Firebase.initializeApp();
-/*
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FirebaseCrashlytics.instance.log(details.toString());
-    FirebaseCrashlytics.instance.crash(); // fatal
-  };
-*/
-  ServiceLocator().init();
+Future<void> main() async {
+  await ProjectInitialize().make();
   runApp(MyApp());
 }
 

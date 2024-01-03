@@ -16,7 +16,7 @@ class HomePageViewModel extends ViewModelBase {
   IEarthquakeRestService _iEarthquakeRestService = ServiceLocator().get<IEarthquakeRestService>();
   HomePageViewModel() {
     initPage();
-    //setCurrentScreen("Home Page");
+    setCurrentScreen("Home Page");
   }
   void initPage() async {
     try {
@@ -43,7 +43,7 @@ class HomePageViewModel extends ViewModelBase {
     try {
       await getEarthQuake(isCompare: isCompare);
     } catch (e) {
-      exceptionHandlingService.handleException(e);
+      await exceptionHandlingService.handleException(e);
     }
   }
 

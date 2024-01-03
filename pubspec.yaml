@@ -5,7 +5,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=3.1.0 <4.0.0"
 
 
 dependencies:
@@ -34,6 +34,8 @@ dependencies:
   lottie: ^1.4.1
   flutter_screenutil: ^5.5.3+2
   kartal: ^3.5.0
+  easy_logger: ^0.0.2
+  logger: ^2.0.2+1
 
   #Other
   cupertino_icons: ^1.0.2

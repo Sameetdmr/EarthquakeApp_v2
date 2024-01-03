@@ -5,7 +5,7 @@ import '../home/HomePage.dart';
 class SplashPageViewModel extends ViewModelBase {
   SplashPageViewModel() {
     initPage();
-    //setCurrentScreen("Splash Page");
+    setCurrentScreen("Splash Page");
   }
 
   void initPage() async {
@@ -13,7 +13,7 @@ class SplashPageViewModel extends ViewModelBase {
       await Future<void>.delayed(const Duration(seconds: 2));
       isStart();
     } catch (ex) {
-      exceptionHandlingService.handleException(ex);
+      await exceptionHandlingService.handleException(ex);
     }
   }
 

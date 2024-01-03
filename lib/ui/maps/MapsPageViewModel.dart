@@ -15,7 +15,7 @@ class MapsPageViewModel extends ViewModelBase {
     this._latitude = latitude;
     this._longitude = longitude;
     initPage();
-    //setCurrentScreen("Maps Page");
+    setCurrentScreen("Maps Page");
   }
   void initPage() async {
     try {
